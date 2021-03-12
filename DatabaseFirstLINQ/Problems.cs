@@ -44,9 +44,10 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that returns the number of users in the Users table.
             // HINT: .ToList().Count
-            var users = _context.Users;
-            var userCount = users.ToList().Count;
-            Console.WriteLine($"The number of users is {userCount}");
+            var user = _context.Users;
+            var userCount = user.Count(x => x.Equals(user)).ToString();
+            
+            
             
 
         }
@@ -55,9 +56,13 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that retrieves the users from the User tables then print each user's email to the console.
 
-            var email = _context.Users;
-            var userEmail = email.Where(e => e.Equals(email));
-            Console.WriteLine($"Your email is {userEmail}");
+            var emails = _context.Users;
+            var userEmail = emails.Where(e => e.Equals(emails));
+            foreach(User email in userEmail)
+            {
+                Console.WriteLine($"Your email is {userEmail}");
+            }
+            
 
         }
 
@@ -65,10 +70,13 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that gets each product where the products price is greater than $150.
             // Then print the name and price of each product from the above query to the console.
-            var product = _context.Products;
+            var products = _context.Products;
             
-            var expensiveProducts = product.Where(e => e.Price > 150).ToList();
-            Console.WriteLine($"These are the expensive products {expensiveProducts}");
+            var expensiveProducts = products.Where(e => e.Price > 150).ToList();
+            foreach (Product product in expensiveProducts)
+            {
+                Console.WriteLine($"Name: {product.Name}");
+            }
         }
 
         private void ProblemFour()
@@ -77,7 +85,11 @@ namespace DatabaseFirstLINQ
             // Then print the name of each product from the above query to the console.
             var products = _context.Products;
             var productList = products.Where(x => x.Name.Contains("s")).ToList();
-            Console.WriteLine($"These products all have an 's': {productList}");
+
+            foreach (Product product in productList)
+            { 
+                Console.WriteLine($"Name: {product.Name}"); 
+            }
             //var productsWithS = products.Where(w => w.Contains("s")).ToList();
 
         }
@@ -86,7 +98,7 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that gets all of the users who registered BEFORE 2016
             // Then print each user's email and registration date to the console.
-            test 
+          
         }
 
         private void ProblemSix()
