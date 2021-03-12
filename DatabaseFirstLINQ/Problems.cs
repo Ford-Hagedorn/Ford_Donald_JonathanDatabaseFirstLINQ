@@ -53,8 +53,10 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that retrieves the users from the User tables then print each user's email to the console.
 
-            
-          
+            var email = _context.Users;
+            var userEmail = email.Where(e => e.Equals(email));
+            Console.WriteLine($"Your email is {userEmail}");
+
         }
 
         private void ProblemThree()
