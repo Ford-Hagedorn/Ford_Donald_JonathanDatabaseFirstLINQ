@@ -63,7 +63,10 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that gets each product where the products price is greater than $150.
             // Then print the name and price of each product from the above query to the console.
-
+            var product = _context.Products;
+            
+            var expensiveProducts = product.Where(e => e.Price > 150).ToList();
+            Console.WriteLine($"These are the expensive products {expensiveProducts}");
         }
 
         private void ProblemFour()
