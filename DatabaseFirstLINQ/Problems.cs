@@ -17,26 +17,26 @@ namespace DatabaseFirstLINQ
         }
         public void RunLINQQueries()
         {
-            //ProblemOne();
-            //ProblemTwo();
-            //ProblemThree();
-            //ProblemFour();
-            //ProblemFive();
-            //ProblemSix();
+            ProblemOne();
+            ProblemTwo();
+            ProblemThree();
+            ProblemFour();
+            ProblemFive();
+            ProblemSix();
             ProblemSeven();
-            //ProblemEight();
-            //ProblemNine();
-            //ProblemTen();
-            //ProblemEleven();
-            //ProblemTwelve();
-            //ProblemThirteen();
-            //ProblemFourteen();
-            //ProblemFifteen();
-            //ProblemSixteen();
-            //ProblemSeventeen();
-            //ProblemEighteen();
-            //ProblemNineteen();
-            //ProblemTwenty();
+            ProblemEight();
+            ProblemNine();
+            ProblemTen();
+            ProblemEleven();
+            ProblemTwelve();
+            ProblemThirteen();
+            ProblemFourteen();
+            ProblemFifteen();
+            ProblemSixteen();
+            ProblemSeventeen();
+            ProblemEighteen();
+            ProblemNineteen();
+            ProblemTwenty();
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -341,6 +341,11 @@ namespace DatabaseFirstLINQ
         {
             // Write a query that finds the total of every users shopping cart products using LINQ.
             // Display the total of each users shopping cart as well as the total of the toals to the console.
+            var userCart = _context.ShoppingCarts.Include(sc => sc.Product).Where(ue => ue.User.Email == "").Select(sc => sc.Product).Sum();
+            foreach (ShoppingCart cartTotals in userCart)
+            {
+                
+            }
         }
 
         // BIG ONE
