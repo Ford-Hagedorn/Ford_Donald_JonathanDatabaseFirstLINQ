@@ -290,7 +290,12 @@ namespace DatabaseFirstLINQ
         private void ProblemTwenty()
         {
             // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
-
+            var userEmail = _context.Users.Where(ue => ue.Email == "oda@gmail.com");
+            foreach (User email in userEmail)
+            {
+                _context.Users.Remove(email);
+            }
+            _context.SaveChanges();    
         }
 
         // <><><><><><><><> BONUS PROBLEMS <><><><><><><><><>
