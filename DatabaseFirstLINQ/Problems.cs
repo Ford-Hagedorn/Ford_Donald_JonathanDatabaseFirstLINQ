@@ -143,8 +143,10 @@ namespace DatabaseFirstLINQ
             var aftonShopping = _context.ShoppingCarts.Include(sc => sc.Product).Where(ue => ue.User.Email == "afton@gmail.com").ToList();
             foreach (ShoppingCart shoppingCart in aftonShopping)
             {
-                
+
             }
+
+
         }
 
         private void ProblemNine()
@@ -186,6 +188,14 @@ namespace DatabaseFirstLINQ
         private void ProblemTwelve()
         {
             // Create a new Product object and add that product to the Products table using LINQ.
+            Product product = new Product()
+            {
+                Name = "Surprise!",
+                Description = "Mystery object! Woo hoo!",
+                Price = 5
+            };
+            _context.Products.Add(product);
+            _context.SaveChanges();
 
         }
 
@@ -275,6 +285,13 @@ namespace DatabaseFirstLINQ
             // Prompt the user to enter in an email and password through the console.
             // Take the email and password and check if the there is a person that matches that combination.
             // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
+            Console.WriteLine("Hello! Please enter your email!");
+            string userInput = Console.ReadLine();
+            string userEmail = userInput;
+            Console.WriteLine("Great! Please enter a password!");
+            string passwordInput = Console.ReadLine();
+            string userPasssword = passwordInput;
+
         }
 
         private void BonusTwo()
