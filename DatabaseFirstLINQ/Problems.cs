@@ -20,10 +20,10 @@ namespace DatabaseFirstLINQ
             //ProblemOne();
             //ProblemTwo();
             //ProblemThree();
-            ProblemFour();
+            //ProblemFour();
             //ProblemFive();
             //ProblemSix();
-            //ProblemSeven();
+            ProblemSeven();
             //ProblemEight();
             //ProblemNine();
             //ProblemTen();
@@ -129,7 +129,8 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that retreives all of the users who are assigned to the role of Customer.
             // Then print the users email and role name to the console.
-            var customerUsers = _context.UserRoles.Include(ur => ur.Role).Include(ur => ur.User).Where(ur => ur.Role.RoleName == "Customer");
+            //var customerUsers = _context.UserRoles.Where(ur => ur.Role.RoleName == "Customer").ToList();
+            var customerUsers = _context.UserRoles.Include(ur => ur.Role).Include(ur => ur.User).Where(ur => ur.Role.RoleName == "Customer").ToList();
             foreach (UserRole userRole in customerUsers)
             {
                 Console.WriteLine($"Email: {userRole.User.Email} Role: {userRole.Role.RoleName}");
@@ -143,9 +144,7 @@ namespace DatabaseFirstLINQ
             var aftonShopping = _context.ShoppingCarts.Include(sc => sc.Product).Where(ue => ue.User.Email == "afton@gmail.com").ToList();
             foreach (ShoppingCart shoppingCart in aftonShopping)
             {
-                string quantity = shoppingCart.Quantity.ToString();
-                string price = shoppingCart.Product.Price.ToString();
-                Console.WriteLine(quantity, shoppingCart.Product.Name, price);
+                Console.WriteLine($"{shoppingCart.Quantity} {shoppingCart.Product.Name} {shoppingCart.Product.Price}");
             }
 
 
