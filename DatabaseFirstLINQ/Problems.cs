@@ -156,10 +156,7 @@ namespace DatabaseFirstLINQ
             // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
             // Then print the total of the shopping cart to the console.
             var userCart = _context.ShoppingCarts.Include(sc => sc.Product).Where(ue => ue.User.Email == "oda@gmail.com").Select(sc => sc.Product.Price).Sum();
-            foreach (ShoppingCart shoppingCart in userCart)
-            {
-                Console.WriteLine($"Product: {userCart.Product.Price}");
-            }
+            Console.WriteLine($"Total price: {userCart}");
 
         }
 
