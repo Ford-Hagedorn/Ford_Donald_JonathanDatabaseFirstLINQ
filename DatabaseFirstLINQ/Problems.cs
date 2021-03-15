@@ -164,7 +164,12 @@ namespace DatabaseFirstLINQ
         {
             // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
             // Then print the user's email as well as the product's name, price, and quantity to the console.
-
+            var employeeRole = _context.UserRoles.Include(ur => ur.Role).Include(ur => ur.User).Where(ur => ur.Role.RoleName == "Employee").ToList();
+            var employeeCart = _context.ShoppingCarts.Include(ec => ec.Product).Include(ec => ec.Equals(employeeRole)).ToList();
+            foreach (ShoppingCart shoppingCart in employeeCart)
+            {
+                Console.WriteLine($"{shoppingCart.Quantity} {shoppingCart.Product.Name} {shoppingCart.Product.Price}");
+            }
         }
 
         // <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
@@ -305,13 +310,31 @@ namespace DatabaseFirstLINQ
             // Prompt the user to enter in an email and password through the console.
             // Take the email and password and check if the there is a person that matches that combination.
             // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
+            var regEmail = _context.Users;
+            var currentUsers = regEmail.Where(e => e.Equals(regEmail)).ToString();
+
+            var regPassword = _context.Users;
+            var userPasswords = regPassword.Where(p => p.Equals(regPassword)).ToString();
+
             Console.WriteLine("Hello! Please enter your email!");
             string userInput = Console.ReadLine();
             string userEmail = userInput;
             Console.WriteLine("Great! Please enter a password!");
             string passwordInput = Console.ReadLine();
-            string userPasssword = passwordInput;
+            string userPassword = passwordInput;
 
+            if (userEmail == currentUsers)
+            {
+                Console.WriteLine("You goofball! That email is taken! Smh");
+            }
+            else if (userPassword == userPasswords)
+            {
+                Console.WriteLine("Looks like you found the password to everything!");
+            }
+            else
+            {
+                Console.WriteLine("Oops! Looks like the password doesn't match, sweetie.");
+            }
         }
 
         private void BonusTwo()
