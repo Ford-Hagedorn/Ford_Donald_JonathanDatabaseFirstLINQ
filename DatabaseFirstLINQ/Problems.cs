@@ -143,7 +143,9 @@ namespace DatabaseFirstLINQ
             var aftonShopping = _context.ShoppingCarts.Include(sc => sc.Product).Where(ue => ue.User.Email == "afton@gmail.com").ToList();
             foreach (ShoppingCart shoppingCart in aftonShopping)
             {
-
+                string quantity = shoppingCart.Quantity.ToString();
+                string price = shoppingCart.Product.Price.ToString();
+                Console.WriteLine(quantity, shoppingCart.Product.Name, price);
             }
 
 
